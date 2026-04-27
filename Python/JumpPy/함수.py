@@ -21,6 +21,14 @@
 # 일반적인 함수
 # 입력값이 있고 리턴값이 있는 함수가 일반적인 함수
 
-def add(a, b):
-    result = a + b
-    return result
+# def add(a, b):
+#     result = a + b
+#     return result
+
+# 입력값은 없지만 리턴값으로 "HI"라는 문자열을 리턴한다. 
+def say():
+    return "hi"
+a = say()
+print(a)
+# 이처럼 입력값이 없고 리턴값만 있는 함수는 다음과 같이 사용한다
+# 리턴 값을 받을 변수 = 함수_이름()
