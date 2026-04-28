@@ -220,9 +220,145 @@
 
 
 
-# 사용자 입출력
-# 사용자가 입력한 값을 어떤 변수에 대입하고 싶을 때는?
-# input 사용하기
-a = input() # 입력한 것을 받고
-print(a) # 입력한 것을 그대로 출력
+# # 사용자 입출력
+# # 사용자가 입력한 값을 어떤 변수에 대입하고 싶을 때는?
+# # input 사용하기
+# a = input() # 입력한 것을 받고
+# print(a) # 입력한 것을 그대로 출력
 
+
+
+# # 숫자를 입력하세요.
+# number = input("숫자를 입력하세요 : ") # input은 입력되는 모든 것을 문자열로 처리하기 때문에 number는 숫자가 아닌 문자열이다.
+# print(type(number)) # str 로 출력됨을 확인할 수 있다.
+
+
+# # 데이터를 출력하는 print문의 사용 예
+# a = 123
+# print(a)
+
+# b = "Python"
+# print(b)
+
+# c = [1, 2, 3]
+# print(c)
+
+
+# # 큰 따옴표로 둘러쌓인 문자열은 +연산과 동일하다.
+# print("Life" "is" "too short")
+# print("lifr"+"is"+"too short")
+
+
+# # 문자열 띄어쓰기는 쉼표로 한다
+# print("Life", "is", "too short") # 쉼표를 사용하면 띄워쓰기를 할 수 있다.
+
+
+# # 한 줄로 결과값 출력하기
+# for i in range(10):
+#     print(i, end = " ")
+    
+    
+    
+    
+    
+    
+# # 파일 읽고 쓰기
+# # 파일을 통한 입출력 방식을 알아보자
+
+# #파일 생성하기
+# f = open("새파일.txt", "w") # 파일_객체 = open(파일 이름, 파일 열기 모드)
+# f.close()
+# # r = 읽기 모드, w = 쓰기 모드,  a = 추가 모드
+
+
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "w")
+# for i in range(1, 11):
+#     data = "%d번 째 줄입니다.\n" % i
+#     f.write(data) # data 파일 객체 f에 써라.
+# f.close()
+
+
+# # readline 함수 이용하기
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# line = f.readline() # 새 파일.txt의 첫번째 줄을 출력
+# print(line)
+# f.close()    
+
+# # 만약 모든 줄을 출력하고싶다면
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# while True:
+#     line = f.readline()
+#     if not line: break
+#     print(line)
+# f.close()
+
+# #readline() 함수 사용하기
+# # 두 번째 방법은 readlines 함수를 사용하는 것이다.
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# lines = f.readline()
+# for line in lines:
+#     print(line)
+# f.close()
+# # readlines 함수는 파일의 모든 줄을 읽어서 각각의 줄을 요소로 가지는 리스트를 리턴한다.
+
+# # 줄바꿈(\n) 문자 제거하기
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# lines = f.readline()
+# for line in lines:
+#     line = line.strip()
+#     print(line)
+# f.close()
+
+
+# # read 함수 사용하기
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# data = f.read() # f.read는 파일의 내용 전체를 문자열로 리턴한다.
+# print(data)
+# f.close() 
+
+# # 파일 객체를 for 문과 함께 사용하기
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "r")
+# for line in f:
+#     print(line)
+# f.close()
+# # 파일 객체(f)는 기본적으로 위와 같이 for문과 함게 사용하여 파일을 줄 단위로 읽을 수 있다.
+
+
+# #파일에 새로운 내용 추가하기
+# # 쓰기모드로 파일을 열 때, 존재하는 파일을 열면 그 파일의 내용이 모두 사라지게 된다. 하지만 있던 값을 유지하면서 단지 새로운 값만 추가해야 할 경우도 있다.
+# # 이럴 경우, 파일을 추가 모드("a") 로 열면 된다.
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/새 파일.txt", "a")
+# for i in range(11, 20):
+#     data = "%d번째 줄입니다.\n" % i
+#     f.write(data)
+# f.close()
+
+
+# # with문과 함꼐 사용하기
+# #아래는 배웠던 형태, 즉 수동으로 파일을 열고 닫았던 형태이다
+# f = open("/Users/coody/Downloads/GitHub/Python/JumpPy/foo.txt", "w")
+# f.write("Life is too short, you need python")
+# f.close()
+# # 아래는 with문을 통해 파일을 자동으로 close. with문에 속해있는 문장을 벗어나는 순간 파일 객체가 자동으로 닫힌다.
+# # 파일을 수동으로 f.close() 닫는게 아닌, 자동으로 닫고싶다면 with문을 사용하면 된다.
+# with open("/Users/coody/Downloads/GitHub/Python/JumpPy/foo.txt", "w") as f:
+#     f.write("Life is too short, you need python")
+    
+    
+
+
+
+
+# # 프로그램의 입출력
+# # sys 모듈 사용하기
+# import sys
+
+# args = sys.argv[1:] # argv는 sys모듈의 프로그램 실행 시 전달된 인수를 의미한다.
+# for i in args: # 프로그램 실행 시 전달받은 인수를 for문을 사용해 차례대로 하나씩 출력하는 예
+#     print(i)
+
+# 응용
+import sys
+args = sys.argv[1:]
+for i in args:
+    print(i.upper(), end=" ")
