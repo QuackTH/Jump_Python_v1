@@ -357,8 +357,138 @@
 # for i in args: # 프로그램 실행 시 전달받은 인수를 for문을 사용해 차례대로 하나씩 출력하는 예
 #     print(i)
 
-# 응용
-import sys
-args = sys.argv[1:]
-for i in args:
-    print(i.upper(), end=" ")
+# # 응용
+# import sys
+# args = sys.argv[1:]
+# for i in args:
+#     print(i.upper(), end=" ")
+
+
+
+
+
+
+
+
+# #되새김 문제
+# #홀수, 짝수 판별 함수 작성하기
+# def is_odd(number):
+#     if number % 2 == 1:
+#         return True        
+#     else:
+#         return False
+
+# is_odd(2)
+
+
+
+# # 모든 입력의 평균값 구하기
+# def avg_number(*args):
+#     result = 0
+#     for i in args:
+#         result += i
+#     return result / len(args)
+
+# print(avg_number(1, 2))
+
+
+
+
+# #잠시 자유연습
+# #keyword arguments
+# #키워드 가변 인수를 통한 예제
+# def student_info(**kwargs):
+#     print(f"전체 데이터: {kwargs}")
+#     if "major" in kwargs:
+#         print(f"전공: {kwargs["major"]}")
+#     if "name" in kwargs:
+#         print(f"이름: {kwargs["name"]}")
+#     if "age" in kwargs:
+#         print(f"나이 {kwargs["age"]}")
+
+# student_info(name="곽태헌", major="미술", age=38)
+
+# 가변 인수를 통한 평균값 구하기 리타이핑 연습
+# def avg_number(*args):
+#     result = 0
+#     for i in args:
+#         result += i
+#     return result / len(args)
+
+# print(avg_number(10, 30, 63, 90))
+
+
+# def avg_number(*args):
+#     result = 0
+#     for i in args:
+#         result += i
+#     return result / len(args)
+
+# print(avg_number(100, 78, 76, 49))
+
+
+# # 프로그램 오류 수정하기
+# # 2개의 숫자를 입력받아 더한 후 리턴하는 프로그램
+# # input은 항상 문자열을 반환하기때문에 int를 써줘야 한다.
+# input1 = int(input("첫 번째 숫자를 입력하세요: "))
+# input2 = int(input("두 번째 숫자를 입력하세요: "))
+
+# total = input1 + input2
+# print("두 수의 합은 %d 입니다." % total)
+
+
+
+
+# # 다음 출력 결과가 다른 것은?
+# print("you" "need" "python")
+# print("you", "need", "python")
+# print("you" + "need" + "python")
+# print("".join(["you", "need", "python"]))
+# # 정답은 2번. 쉼표로 구분하면 print가 각 인자 사이에 공백을 자동 삽입한다. 나머지 셋은 모두 문자열을 먼저 합친 후, 출력하므로 공백이 없음
+
+
+
+
+# # 사용자 입력 저장하기
+# # 사용자의 입력을 파일 test.txt 에 저장하는 프로그램을 작성해보자.
+# # 단, 프로그램을 다시 실행하더라도 기존에 작성한 내용을 유지하고 줄바꿈 후에,새로 입력한 내용을 추가해야 한다.
+# user_input = input("저장 할 내용을 입력하세요: ")
+# f = open("test.txt", "a")
+# f.write(user_input)
+# f.write("\n")
+# f.close()
+
+
+
+
+
+
+# # 파일의 문자열 바꾸기
+# # "java" 라는 문자를 "python" 으로 바꾸기
+# f = open("test_v2.txt", "r")
+# body = "Life is too short you need java"
+# f.close()
+# body = "Life is too short you need python"
+# f = open("test_v2.txt", "w")
+# f.write(body)
+# f.close()
+
+
+# # python 으로 바뀐 문자열을 C++ 로 변환
+# f = open("test_v2.txt", "r")
+# body = "Life is too short you need python"
+# f.close()
+# body = "Life is too short you need C++"
+# f = open("test_v2.txt", "w")
+# f.write(body)
+# f.close()
+
+
+# replace함수 사용하여 C++을 python으로 되돌리기
+f = open("test_v2.txt", "r")
+body = "Life is too short you need python"
+f.close()
+body = body.replace("C++", "python")
+f = open("test_v2.txt", "w")
+f.write(body)
+f.close()
