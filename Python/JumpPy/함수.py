@@ -484,11 +484,29 @@
 # f.close()
 
 
-# replace함수 사용하여 C++을 python으로 되돌리기
-f = open("test_v2.txt", "r")
-body = "Life is too short you need python"
-f.close()
-body = body.replace("C++", "python")
-f = open("test_v2.txt", "w")
-f.write(body)
-f.close()
+# # replace함수 사용하여 C++을 python으로 되돌리기
+# f = open("test_v2.txt", "r")  # 파일 오픈 (파일 오브젝트, 모드)
+# body = "Life is too short you need python" # 변수 선언 및 내용 문자열
+# f.close() # 파일 닫기
+# body = body.replace("C++", "python") # 변수 선언 , 변수 속성에 replace() 함수 사용 (바꿀 문자, 바뀔 문자)
+# f = open("test_v2.txt", "w") # 파일 오픈 (파일 오브젝트, 모드)
+# f.write(body) # 쓰기 함수(변수)
+# f.close() #파일 닫기
+
+# class FourCal:
+#     def setdata(self, first, second): # 메서드의 매개변수
+#         self.first = first    # 메서드의 수행문
+#         self.second = second   #메서드의 수행문
+#         a = FourCal()
+#         a.setdata(4, 2)
+        
+
+# # a = FourCal()
+# # FourCal(a, 4, 2)
+# # 위와 같이 클래스명.메서드 형태로 호출할 때는 객체 a를 첫 번째 매개변수 self에 꼭 전달해야함
+
+# # a = FourCal()
+# # a.setdata(4, 2)
+# # 갹체.메서드 형태로 호출할 때는 self를 반드시 생략해서 호출한다.
+
+
