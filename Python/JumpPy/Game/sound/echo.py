@@ -1,2 +1,2 @@
-def render_test():
-    print("render")
+def echo_test():
+    print("echo")
