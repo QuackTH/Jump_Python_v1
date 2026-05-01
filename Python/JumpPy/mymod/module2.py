@@ -1,3 +1,5 @@
+import math
+
 PI = 3.141592
 
 class math:
