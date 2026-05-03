@@ -83,14 +83,46 @@
 # else:   #오류가 없을 경우에만 사용
 #     ...
 
-"""try문 수행 중 오류가 발생하면 except절, 오류가 발생하지 않으면 else절이 수행."""
-# 예
+# """try문 수행 중 오류가 발생하면 except절, 오류가 발생하지 않으면 else절이 수행."""
+# # 예
+# try:
+#     age = int(input("나이를 입력하세요: "))
+# except:
+#     print("입력이 정확하지 않습니다.")
+# else:
+#     if age <= 18:
+#         print("미성년자는 출입금지입니다.")
+#     else:
+#         print("Welcome to here! ")
+
+
+class MyError(Exception):
+    def __str__(self):
+        return "허용되지 않는 별명입니다."
+
+
+def say_nick(nick):
+    if nick == "dumb":
+        raise MyError()
+    print(nick)
+    
+# print(say_nick("angel"))
+# print(say_nick("dumb"))
+
+# try:
+#     say_nick("angle")
+#     say_nick("dumb")
+# except MyError:
+#     print("허용되지 않습니다.") 
+    
+# 만약 오류 메세지를 사용하고 싶다면 다음처럼 예외 처리를 하면 된다.
 try:
-    age = int(input("나이를 입력하세요: "))
-except:
-    print("입력이 정확하지 않습니다.")
-else:
-    if age <= 18:
-        print("미성년자는 출입금지입니다.")
-    else:
-        print("Welcome to here! ")
+    say_nick("angle")
+    say_nick("dumb")
+except MyError as e:
+    print(e)
+"""하지만 프로그램을 실행해보면 print(e)를 통해 오류 메세지가 출력되지 않는 것을 확인할 수 있다.
+오류 메세지가 보이게 하려면 오류 클래스에 다음과 같은 __str__ 메서드를 구현해야 한다."""
+# __str__ 은 print 문처럼 오류메세지를 print문으로 출력할 경우에 호출되는 메소드다.
+
+    
