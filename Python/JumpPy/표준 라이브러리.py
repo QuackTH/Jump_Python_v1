@@ -56,3 +56,7 @@ time = time (시간)"""
 import time
 print(time.strftime("%x", time.localtime(time.time()))) # 05/06/26
 print(time.strftime("%c", time.localtime(time.time()))) # Wed May  6 03:55:30 2026
+
+
+
+    
