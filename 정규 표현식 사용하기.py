@@ -241,43 +241,107 @@
 
 
 
-# 전방 탐색
-"""정규식에서 사람들이 가장 어려하는 것이 바로 전방탐색이다.
-전방 탐색 확장구문. 이 확장 구문을 사용하면 암호문처럼 알아보기 어렵게 바뀌기 때문
-꼭 필요한 경우가 있으므로 습득해두자"""
+# # 전방 탐색
+# """정규식에서 사람들이 가장 어려하는 것이 바로 전방탐색이다.
+# 전방 탐색 확장구문. 이 확장 구문을 사용하면 암호문처럼 알아보기 어렵게 바뀌기 때문
+# 꼭 필요한 경우가 있으므로 습득해두자"""
+# import re
+
+# p = re.compile(".+:")
+# m = p.search("http://google.com")
+# print(m.group()) # http:
+
+# """http: 가 출력되었다. 만약 http 만 출력하고 싶다면? 예는 간단하지만
+# 훨씬 복잡한 정규식이여서 그루핑은 따로 추가할 수 없다는 조건이라고 가정하자"""
+
+# # 긍정형 전방 탐색 ((?=...)):...  해당하는 정규식과 매치되어야 하며, 조건이 통과되어도 문자열이 소비X
+# # 부정형 전방 탐색((?!....)):...  해당하는 정규식과 매치되지 않아야 하며 조건이 통과되어도 문자열 소비 X
+
+# #긍정형 전방 탐색 예
+# import re
+
+# p = re.compile(".+(?=:)")
+# m = p.search("http://google.com")
+# print(m.group()) # http
+
+
+
+
+
+
+
+
+# # 문자열 바꾸기
+# # blue|white|red 를 Colour 문자열로 치환하기
+# import re
+
+# p = re.compile("(blue|white|red)")
+# print(p.sub("colour", "blue socks and red shoes")) # colour socks and colour shoes
+
+# # 딱 한번만 바꾸고 싶을 땐?
+# print(p.sub("color", "blue socks and red shoes", count=1)) # color socks and red shoes
+# """처음 일치하는 blue만 color 문자열로 치환되었다"""
+
+
+
+
+
+# """sub 메서드와 유사한 subn 메서드"""
+# """subn 역시 sub 와 동일한 기능을 제공하지만, 반환 결과를 튜플로 리턴한다는 차이가 있다
+# 리턴 된 튜플의 첫 번째 요소는 변경된 문자열, 두 번째 요소는 바꾸기가 발생한 횟수이다"""
+
+# import re
+
+# p = re.compile("(blue|white|red)")
+# print(p.subn("colour", "blue socks and red shoes")) # ('colour socks and colour shoes', 2)
+
+
+
+
+
+
+# # sub 메서드 사용 시 참조 구문 사용하기
+# import re
+# p = re.compile(r"?P<name>\w+)\s+(?P<phone>(\d+)[-]\d+[-]\d+)")
+# print(p.sub("\g<phone> \g<name>", "Quack 010-5135-0630"))
+
+
+
+
+
+# # 다음과 같이 그룹 이름 대신 참조 번호를 사용해도 마찬가지로 리턴해 준다.
+# import re
+# p = re.compile(r"(?P<name>\w+)\s+(?P<phone>(\d+)[-]\d+[-]\d+)")
+# print(p.sub("\g<2> \g<1>", "Quack 010-5135-0630")) # 010-5135-0630 Quack
+
+
+
+
+
+# # sub 매서드의 매개변수로 함수 넣기
+# """sub 메서드의 첫 번째 인수에 함수를 전달할 수도 있다. 다음예를 살펴보자"""
+# import re
+# def hexrepl(match):
+#     value = int(match.group())
+#     return hex(value)
+
+# p = re.compile(r"\d+")
+# print(p.sub(hexrepl, "Call 65490 for printing, 49152 for user code."))
+# # 출력 - Call 0xffd2 for printing, 0xc000 for user code.
+# """hexrepl 은 match 객체를 입력으로 받아 16진수로 변환하여 리턴해 주는 함수이다.
+# sub의 첫 번째 인수로 함수를 사용할 경우, 해당 함수의 첫번째 매개변수에는 정규식과
+# 매치된 match 객체가 입력된다. 그리고 매치되는 문자열은 리턴값으로 바뀌게 된다."""
+
+
+
+
+
+
+# greedy 와 non-greedy
+"""정규식에는 탐욕스러운 이라는 표현을 종종 쓴다."""
 import re
-
-p = re.compile(".+:")
-m = p.search("http://google.com")
-print(m.group()) # http:
-
-"""http: 가 출력되었다. 만약 http 만 출력하고 싶다면? 예는 간단하지만
-훨씬 복잡한 정규식이여서 그루핑은 따로 추가할 수 없다는 조건이라고 가정하자"""
-
-# 긍정형 전방 탐색 ((?=...)):...  해당하는 정규식과 매치되어야 하며, 조건이 통과되어도 문자열이 소비X
-# 부정형 전방 탐색((?!....)):...  해당하는 정규식과 매치되지 않아야 하며 조건이 통과되어도 문자열 소비 X
-
-#긍정형 전방 탐색 예
-import re
-
-p = re.compile(".+(?=:)")
-m = p.search("http://google.com")
-print(m.group()) # http
-
-
-
-
-
-
-
-
-# 문자열 바꾸기
-# blue|white|red 를 Colour 문자열로 치환하기
-import re
-
-p = re.compile("(blue|white|red)")
-print(p.sub("colour", "blue socks and red shoes")) # colour socks and colour shoes
-
-# 딱 한번만 바꾸고 싶을 땐?
-print(p.sub("color", "blue socks and red shoes", count=1)) # color socks and red shoes
-"""처음 일치하는 blue만 color 문자열로 치환되었다"""
+s = r"<html><head><title>Title<\title>"
+print(len(s)) # 32
+print(re.match("<.*>", s).span()) # (0, 32)
+print(re.match("<.*>", s).group()) # <html><head><title>Title<\title>
+print(re.match("<.*?>", s).group()) # <html>
